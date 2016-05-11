@@ -10,6 +10,12 @@
 #import "TAGContainerOpener.h"
 #import "TAGManager.h"
 
+#define MIXPANEL_TOKEN @"ac10d9ad3d985270e72ce1ee02869453"
+
+@interface AppDelegate ()<TAGContainerOpenerNotifier,TAGContainerCallback>
+@end
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,36 +24,79 @@
 	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.22f green:0.17f blue:0.13f alpha:1.00f]];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
-    
-
-    #define MIXPANEL_TOKEN @"ac10d9ad3d985270e72ce1ee02869453"
-    
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     
     self.tagManager = [TAGManager instance];
     [self.tagManager.logger setLogLevel:kTAGLoggerLogLevelVerbose];
     
-    [TAGContainerOpener openContainerWithId:@"GTM-WFLLQ8"   // Update with your Container ID.
+    [TAGContainerOpener openContainerWithId:@"GTM-P3T8VS"   // Update with your Container ID.
                                  tagManager:self.tagManager
                                    openType:kTAGOpenTypePreferFresh
                                     timeout:nil
                                    notifier:self];
     
-    NSURL *url = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
-    if (url != nil) {
-        [self.tagManager previewWithUrl:url];
-    }
-
+    [NSTimer scheduledTimerWithTimeInterval:10.0
+                                     target:self
+                                   selector:@selector(refreshContainer:)
+                                   userInfo:nil
+                                    repeats:YES];
 
     return YES;
 }
 
+- (void)refreshContainer:(NSTimer *)timer {
+    
+    [self.container refresh];
+}
+
+/**
+ * Called before the refresh is about to begin.
+ *
+ * @param container The container being refreshed.
+ * @param refreshType The type of refresh which is starting.
+ */
+- (void)containerRefreshBegin:(TAGContainer *)container
+                  refreshType:(TAGContainerCallbackRefreshType)refreshType {
+    // Notify UI that container refresh is beginning.
+}
+
+
+/**
+ * Called when a refresh has successfully completed for the given refresh type.
+ *
+ * @param container The container being refreshed.
+ * @param refreshType The type of refresh which completed successfully.
+ */
+- (void)containerRefreshSuccess:(TAGContainer *)container
+                    refreshType:(TAGContainerCallbackRefreshType)refreshType {
+    // Note that containerAvailable may be called on any thread, so you may need to dispatch back to
+    // your main thread.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.container = container;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContainerOpened" object:nil];
+    });
+}
+
+
+/**
+ * Called when a refresh has failed to complete for the given refresh type.
+ *
+ * @param container The container being refreshed.
+ * @param failure The reason for the refresh failure.
+ * @param refreshType The type of refresh which failed.
+ */
+- (void)containerRefreshFailure:(TAGContainer *)container
+                        failure:(TAGContainerCallbackRefreshFailure)failure
+                    refreshType:(TAGContainerCallbackRefreshType)refreshType {
+    // Notify UI that container request has failed.
+}
 
 - (void)containerAvailable:(TAGContainer *)container {
     // Note that containerAvailable may be called on any thread, so you may need to dispatch back to
     // your main thread.
     dispatch_async(dispatch_get_main_queue(), ^{
         self.container = container;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContainerOpened" object:nil];
     });
 }
 

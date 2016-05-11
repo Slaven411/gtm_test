@@ -8,7 +8,10 @@
 #import "ImageSaver.h"
 #import "Mixpanel.h"
 
-#define MIXPANEL_TOKEN @"1134"
+#import "AppDelegate.h"
+
+#import "TAGContainer.h"
+#import "TAGContainerOpener.h"
 
 @interface MasterViewController ()<UISearchBarDelegate>
 @property (nonatomic) NSMutableArray *beers;
@@ -38,13 +41,31 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
     [super viewDidLoad];
 	self.tableView.contentOffset = CGPointMake(0, 44);
 
-    
+#warning Mixapen can't be initialized more than once !!! 
+#warning to get mixpnanel intance use  Mixpanel *mixpanel = [Mixpanel sharedInstance]
     // Initialize the library with your
     // Mixpanel project token, MIXPANEL_TOKEN
     [Mixpanel sharedInstanceWithToken:@"1134"];
     
     // Later, you can get your instance with
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+   // Mixpanel *mixpanel = [Mixpanel sharedInstance];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"ContainerOpened" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        Mixpanel *mixpanel = [Mixpanel sharedInstance];
+        
+        // Retrieving a configuration value from a Tag Manager Container.
+        
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        TAGContainer *container = appDelegate.container;
+        
+        // Get the configuration value by key.
+       // NSString *eventName = [container stringForKey:@"EventName"];
+      //  NSLog(@"eventName = %@",eventName);
+        NSString *test = [container stringForKey:@"Test"];
+        NSLog(@"test = %@",test);
+    }];
 }
 
 #pragma mark - Segue

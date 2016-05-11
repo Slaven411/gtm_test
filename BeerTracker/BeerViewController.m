@@ -10,6 +10,10 @@
 #import "TAGDataLayer.h"
 #import "AppDelegate.h"
 #import "TAGManager.h"
+#import "MasterViewController.h"
+
+#import "TAGContainer.h"
+#import "TAGContainerOpener.h"
 
 @interface BeerViewController ()<UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 @end
@@ -119,6 +123,12 @@
 	
 	[sheet showInView:self.navigationController.view];
     
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    TAGContainer *container = appDelegate.container;
+    
+     NSString *test = [container stringForKey:@"Test"];
+    
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
     
     [mixpanel track:@"Plan selected" properties:@{
@@ -129,6 +139,10 @@
                                                  @"1": @"2",
                                                  @"3": @"4"
                                                  }];
+    
+    [mixpanel track:@"Example" properties:@{@"example":test}];
+   
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
