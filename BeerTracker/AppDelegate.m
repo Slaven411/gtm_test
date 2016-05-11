@@ -10,6 +10,9 @@
 #import "TAGContainerOpener.h"
 #import "TAGManager.h"
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #define MIXPANEL_TOKEN @"ac10d9ad3d985270e72ce1ee02869453"
 
 @interface AppDelegate ()<TAGContainerOpenerNotifier,TAGContainerCallback>
@@ -23,6 +26,9 @@
 	self.window.tintColor = [UIColor whiteColor];
 	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.22f green:0.17f blue:0.13f alpha:1.00f]];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
+    [[ FBSDKApplicationDelegate sharedInstance ] application : application
+                               didFinishLaunchingWithOptions : launchOptions ];
     
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     
@@ -43,6 +49,10 @@
 
     return YES;
 }
+
+
+
+
 
 - (void)refreshContainer:(NSTimer *)timer {
     
@@ -109,6 +119,11 @@
         return YES;
     }
     
+    
+    return  [[ FBSDKApplicationDelegate sharedInstance ] application : application
+                                                             openURL : url
+                                                   sourceApplication : sourceApplication
+                                                          annotation : annotation ];
     // Code to handle other urls.
     return NO;
 }
@@ -132,8 +147,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+    [ FBSDKAppEvents activateApp ];}
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {

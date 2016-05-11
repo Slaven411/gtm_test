@@ -11,9 +11,11 @@
 #import "AppDelegate.h"
 #import "TAGManager.h"
 #import "MasterViewController.h"
-
 #import "TAGContainer.h"
 #import "TAGContainerOpener.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface BeerViewController ()<UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 @end
@@ -24,6 +26,12 @@
 - (void)viewDidLoad {
 	self.beerNotesView.layer.borderColor = [UIColor colorWithWhite:0.667 alpha:0.500].CGColor;
 	self.beerNotesView.layer.borderWidth = 1.0f;
+    
+    FBSDKLoginButton  *loginButton =  [[FBSDKLoginButton alloc] init ];
+    loginButton.center = self.view.center;
+    [self.view addSubview:loginButton];
+    [FBSDKSettings setAppID:@"1739194459684217"];
+
 }
 
 

@@ -7,11 +7,12 @@
 #import "BeerViewController.h"
 #import "ImageSaver.h"
 #import "Mixpanel.h"
-
 #import "AppDelegate.h"
-
 #import "TAGContainer.h"
 #import "TAGContainerOpener.h"
+
+
+
 
 @interface MasterViewController ()<UISearchBarDelegate>
 @property (nonatomic) NSMutableArray *beers;
@@ -24,6 +25,9 @@ NSString * const SORT_KEY_RATING = @"beerDetails.rating";
 NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
 
 @implementation MasterViewController
+
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -41,14 +45,9 @@ NSString * const WB_SORT_KEY     = @"WB_SORT_KEY";
     [super viewDidLoad];
 	self.tableView.contentOffset = CGPointMake(0, 44);
 
-#warning Mixapen can't be initialized more than once !!! 
-#warning to get mixpnanel intance use  Mixpanel *mixpanel = [Mixpanel sharedInstance]
-    // Initialize the library with your
-    // Mixpanel project token, MIXPANEL_TOKEN
-    [Mixpanel sharedInstanceWithToken:@"1134"];
-    
-    // Later, you can get your instance with
-   // Mixpanel *mixpanel = [Mixpanel sharedInstance];
+
+
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

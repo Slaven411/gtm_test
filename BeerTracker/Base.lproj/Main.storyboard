@@ -39,7 +39,6 @@
                             <outlet property="delegate" destination="dL8-8L-svf" id="EWS-wi-Xe3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Авыаыва" image="MPLogo.png" selectedImage="MPLogo.png" id="8iA-bU-Jcl"/>
                     <navigationItem key="navigationItem" title="Wender Beer" id="lBv-t2-1fb">
                         <barButtonItem key="backBarButtonItem" title=" " id="zzk-0O-F7J"/>
                         <barButtonItem key="leftBarButtonItem" id="nAV-ZZ-uIK">
@@ -63,7 +62,6 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="logo" destination="8iA-bU-Jcl" id="FqM-NY-Avr"/>
                         <outlet property="searchBar" destination="ZhJ-KG-ly5" id="pej-1N-b0i"/>
                         <outlet property="segmentedControl" destination="yMI-fE-cCZ" id="ty4-OR-67F"/>
                     </connections>
@@ -98,18 +96,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="84m-9l-KWw">
-                            <rect key="frame" x="0.0" y="257" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="170" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <sections>
                             <tableViewSection id="j6T-gp-qag">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="103" id="HS4-v3-Xpz">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="87" id="HS4-v3-Xpz">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HS4-v3-Xpz" id="xDw-Ix-Sve">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8es-nf-r9b">
@@ -145,11 +143,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="154" id="zf9-em-ZWK">
-                                        <rect key="frame" x="0.0" y="103" width="320" height="154"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="83" id="zf9-em-ZWK">
+                                        <rect key="frame" x="0.0" y="87" width="320" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zf9-em-ZWK" id="7hR-Hh-JQa">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUX-3W-vg9">
@@ -159,7 +157,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJt-Hf-wC8">
-                                                    <rect key="frame" x="18" y="34" width="282" height="111"/>
+                                                    <rect key="frame" x="17" y="34" width="282" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -234,7 +232,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MPLogo.png" width="66" height="22"/>
         <image name="beermug-full" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
